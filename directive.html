@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width"/>
+</head>
+<body>
+<div id="directive" v-dp="dp:msg">
+    {{msg}}
+</div>
+<!--自定义指令 自定义过滤器 demo-->
+<script src="lib/vue.min.js"></script>
+<script>
+    Vue.directive('dp',function(newValue,oldValue){
+        console.log(newValue);
+        console.log(this);
+    });
+    var vm=new Vue({
+        el:'#directive',
+        data:{
+            msg:'hello'
+        }
+    })
+</script>
+</body>
+</html>

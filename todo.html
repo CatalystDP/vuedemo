@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width"/>
+    <title></title>
+    <style>
+        .done{
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+<div id="todo">
+    <h1>{{title | uppercase}}</h1>
+    <ul>
+        <li v-repeat="todos" v-text="content" v-on="click:toggle(this,$event)" class="{{done? 'done':''}}"></li>
+    </ul>
+</div>
+<script src="./lib/vue.min.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#todo',
+        data:{
+            title:'这是一个todolist',
+            todos:[
+                {
+                    done:true,
+                    content:'222'
+                },
+                {
+                    done:false,
+                    content:'111'
+                }
+            ]
+        },
+        methods:{
+            toggle:function($this,e){
+                $this.done=!$this.done;
+            }
+        }
+    });
+</script>
+</body>
+</html>

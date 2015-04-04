@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width"/>
+    <title></title>
+</head>
+<body>
+<form id="form">
+    <p>
+        <input type="text" v-model="msg"/>
+        {{msg}}
+    </p>
+
+    <p>
+        <input type="checkbox" v-model="checked"/>
+        <input type="checkbox" v-model="checked"/>
+    </p>
+
+    <p>
+        <input type="radio" value="one" v-model="picked"/>
+        <input type="radio" value="two" v-model="picked"/>
+    </p>
+
+    <p>
+        <select name="" id="" v-model="selected">
+            <option value="one">one</option>
+            <option value="two">two</option>
+        </select>
+        {{selected}}
+    </p>
+    <p>
+        <select name="" id="" v-model="dynamicSelected" options="opt"></select>
+        {{dynamicSelected}}
+    </p>
+</form>
+<div id="computed">
+    {{fullName}}
+</div>
+<script src="lib/vue.min.js"></script>
+<script>
+    var form = new Vue({
+        el: '#form',
+        data: {
+            msg: 'dp',
+            checked: true,
+            picked: 'two',
+            selected: 'two',
+            opt: [{text: 'A', value: 'A'}, {text: 'B', value: 'A'}],
+            dynamicSelected: 'b'
+        }
+    });
+    var computed = new Vue({
+        el: '#computed',
+        data: {
+            firstName:'deng',
+            secondName:'tad'
+        },
+        computed:{
+            fullName:{
+                get:function(){
+                    return this.secondName+'·'+this.firstName;
+                },
+                set:function(obj){
+                    this.firstName=obj.firstName;
+                    this.secondName=obj.secondName;
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

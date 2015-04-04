@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width"/>
+    <title></title>
+</head>
+<body>
+<ul id="list">
+    <li v-repeat="items">
+        {{$index}}-{{parentMsg}} {{$value}}
+    </li>
+</ul>
+<ul id="users">
+    <li v-repeat="user:users">
+        {{$index}}-{{user.name}}
+    </li>
+</ul>
+<ul id="object">
+    <li v-repeat="userinfo">
+        {{$key}} : {{$value}}
+    </li>
+    <li>===</li>
+    <li v-repeat="info:otherinfo">
+        {{$key}} :{{info.msg}}
+    </li>
+</ul>
+<script src="lib/vue.min.js"></script>
+<script>
+    var listvm = new Vue({
+        el: '#list',
+        data: {
+            parentMsg: 'Hello',
+            items: [1, 2]
+        }
+    });
+    var uservm = new Vue({
+        el: '#users',
+        data: {
+            users: [{name: 'dp'}, {name: 'mz'}]
+        }
+    });
+    uservm.users.unshift({name: 'root'});
+    var repeat_obj = new Vue({
+        el: '#object',
+        data: {
+            userinfo:{
+                name:'dp',
+                girlfriend:'mz'
+            },
+            otherinfo:{
+                one:{msg:'1'},
+                two:{msg:2}
+            }
+        }
+    });
+    repeat_obj.otherinfo.$add('three',{msg:3});
+</script>
+</body>
+</html>

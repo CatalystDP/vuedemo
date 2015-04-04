@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width"/>
+    <title></title>
+</head>
+<body>
+<div id="event">
+    <div class="minus" v-on="click:handler">减</div>
+    <div class="plus" v-on="click:handler">
+        加
+    </div>
+    <div>{{n}}</div>
+</div>
+<script src="lib/vue.min.js"></script>
+<script>
+    var event = new Vue({
+        el:'#event',
+        data:{
+            n:0
+        },
+        methods:{
+            handler:function(e){
+                console.log(e.targetVM);
+                console.log(this);
+                var $this= e.target;
+                if($this.className=='minus'){
+                    this.n>0 && --this.n;
+                }
+                else if($this.className=='plus'){
+                    ++this.n;
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>
